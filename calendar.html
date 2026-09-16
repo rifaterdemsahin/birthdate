@@ -27,6 +27,7 @@
         .day { padding: 8px 0; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
         .day:not(.empty):hover { background: #d6eaf8; }
         .day.empty { cursor: default; }
+        .day.today { border: 2px solid #e74c3c !important; font-weight: bold; background-color: #fdf2e9; }
         .day.kid-event { background: #e8daef; color: #8e44ad; font-weight: bold; position: relative; }
         .day.kid-event:hover::after { content: attr(title); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 4px 8px; border-radius: 4px; white-space: nowrap; z-index: 10; font-size: 12px; }
         .day.holiday { background: #f1c40f; color: #d35400; font-weight: bold; position: relative; }
@@ -69,9 +70,15 @@
                 <span><div class="legend-box" style="background: #f1c40f;"></div> UK Bank Holiday</span>
                 <span><div class="legend-box" style="background: #27ae60;"></div> Selected Party Date</span>
                 <span><div class="legend-box" style="background: #e8daef;"></div> Kid Events / Birthdays</span>
+                <span><div class="legend-box" style="border: 2px solid #e74c3c; background: #fdf2e9;"></div> Today</span>
             </div>
 
             <div class="months-grid" id="calendarGrid"></div>
+            
+            <div class="important-dates-list" style="margin-top: 40px; text-align: left; background: white; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
+                <h3 style="margin-top: 0;">📅 Upcoming Important Dates</h3>
+                <ul id="datesList" style="line-height: 1.8; margin-bottom: 0;"></ul>
+            </div>
         </div>
     </div>
     
@@ -121,6 +128,10 @@
                     let dayStr = d.toString().padStart(2, '0');
                     let dateString = `${year}-${m}-${dayStr}`;
                     
+                    
+                    let todayD = new Date();
+                    let todayString = `${todayD.getFullYear()}-${(todayD.getMonth()+1).toString().padStart(2, '0')}-${todayD.getDate().toString().padStart(2, '0')}`;
+                    
                     let isHoliday = holidays[dateString];
                     let kidEvent = kidEvents[dateString];
                     let classes = "day";
@@ -132,6 +143,7 @@
                         titleText = isHoliday;
                     }
                     
+                    if (dateString === todayString) classes += " today";
                     if (kidEvent) {
                         classes += " kid-event";
                         titleText += (titleText ? " & " : "") + kidEvent.title;
@@ -149,6 +161,28 @@
                 // Move to next month
                 currentDate.setMonth(currentDate.getMonth() + 1);
             }
+        }
+
+        
+        function renderImportantDates() {
+            const allEvents = [];
+            for (let d in holidays) { allEvents.push({ date: d, text: holidays[d], icon: '👑' }); }
+            for (let d in kidEvents) { allEvents.push({ date: d, text: kidEvents[d].title, icon: kidEvents[d].icon }); }
+            
+            allEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            let listHtml = '';
+            let today = new Date();
+            today.setHours(0,0,0,0);
+            
+            allEvents.forEach(e => {
+                let dObj = new Date(e.date);
+                if (dObj >= today) {
+                    let niceDate = dObj.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+                    listHtml += `<li><strong>${niceDate}:</strong> ${e.icon} ${e.text}</li>`;
+                }
+            });
+            document.getElementById('datesList').innerHTML = listHtml;
         }
 
         function selectDateFromGrid(dateStr) {
@@ -185,6 +219,7 @@
 
         window.addEventListener('load', () => {
             renderCalendar();
+            renderImportantDates();
             const savedRaw = localStorage.getItem('globalPartyDateRaw');
             if (savedRaw) {
                 document.getElementById('globalDate').value = savedRaw;
