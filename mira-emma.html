@@ -110,6 +110,7 @@
             <a href="sanity-check.html">✅ Sanity</a>
             <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
             <a href="comms.html">💬 Comms</a>
+            <a href="system-parameters.html">⚙️ System</a>
         
             <input list="searchOptions" id="siteSearch" placeholder="🔍 Quick Search..." onchange="handleSearch(this)" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; flex-grow: 1; min-width: 200px; max-width: 100%;">
             <datalist id="searchOptions">
@@ -123,6 +124,7 @@
                 <option value="🌦️ Weather Forecast"></option>
                 <option value="✅ Sanity Check"></option>
                 <option value="👨‍👩‍👧‍👦 Parents Checklist"></option>
+                <option value="⚙️ System Parameters"></option>
             </datalist>
         </div>
 
@@ -160,12 +162,20 @@
             
             <div class="form-group">
                 <label for="partyLocation">Location Name:</label>
-                <input type="text" id="partyLocation" value="Partyman World Of Play" onkeyup="updateCard()">
+                <select id="partyLocation" onchange="updateLocationDetails()">
+                    <option value="Partyman World Of Play" data-address="Unit 14, Cambridge Retail Park, Henley Rd, Cambridge CB5 8WR" selected>Partyman World Of Play</option>
+                    <option value="Cambridge Ice Arena" data-address="Newmarket Rd, Cambridge CB5 8AA" >Cambridge Ice Arena</option>
+                    <option value="Clip 'n Climb" data-address="Clifton Way, Cambridge CB1 7GX" >Clip 'n Climb</option>
+                    <option value="St Matthew's Piece" data-address="St Matthew's St, Cambridge CB1 2PQ" >St Matthew's Piece</option>
+                    <option value="Bowling at Cambridge Junction" data-address="Clifton Way, Cambridge CB1 7GX" >Bowling at Cambridge Junction</option>
+                    <option value="Pizza Express" data-address="Jesus Ln, Cambridge CB5 8BA" >Pizza Express</option>
+                    <option value="Cambridge Botanic Garden" data-address="1 Brookside, Cambridge CB2 1JE" >Cambridge Botanic Garden</option>
+                </select>
             </div>
             
             <div class="form-group">
                 <label for="partyAddress">Address (Postcode):</label>
-                <input type="text" id="partyAddress" value="CB1 1BB, Cambridge, UK" onkeyup="updateCard()">
+                <input type="text" id="partyAddress" value="Unit 14, Cambridge Retail Park, Henley Rd, Cambridge CB5 8WR" onkeyup="updateCard()">
             </div>
         </div>
 
@@ -180,7 +190,7 @@
                     <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
                     <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
                     <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
-                    <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
+                    <p><strong>Address:</strong> <span class="outAddress">Unit 14, Cambridge Retail Park, Henley Rd, Cambridge CB5 8WR</span></p>
                     <p><strong>RSVP to:</strong> Ece, Rifat, Ryan & Bekka</p>
 
                 </div>
@@ -192,7 +202,7 @@
                     <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
                     <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
                     <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
-                    <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
+                    <p><strong>Address:</strong> <span class="outAddress">Unit 14, Cambridge Retail Park, Henley Rd, Cambridge CB5 8WR</span></p>
                     <p><strong>RSVP to:</strong> Ece, Rifat, Ryan & Bekka</p>
 
                 </div>
@@ -202,6 +212,13 @@
     </div>
 
     <script>
+        
+        function updateLocationDetails() {
+            const locSelect = document.getElementById('partyLocation');
+            const selectedOption = locSelect.options[locSelect.selectedIndex];
+            document.getElementById('partyAddress').value = selectedOption.getAttribute('data-address');
+            updateCard();
+        }
         function updateCard() {
             const guest = document.getElementById('guestName').value;
             const theme = document.getElementById('partyTheme').value;
@@ -298,7 +315,8 @@
                 "💬 WhatsApp Messages & Comms": "comms.html",
                 "🌦️ Weather Forecast": "weather.html",
                 "✅ Sanity Check": "sanity-check.html",
-                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html"
+                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html",
+                "⚙️ System Parameters": "system-parameters.html"
             };
             if (routes[val]) {
                 window.location.href = routes[val];

@@ -40,6 +40,7 @@
             <a href="sanity-check.html">✅ Sanity</a>
             <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
             <a href="comms.html">💬 Comms</a>
+            <a href="system-parameters.html">⚙️ System</a>
         
             <input list="searchOptions" id="siteSearch" placeholder="🔍 Quick Search..." onchange="handleSearch(this)" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; flex-grow: 1; min-width: 200px; max-width: 100%;">
             <datalist id="searchOptions">
@@ -53,6 +54,7 @@
                 <option value="🌦️ Weather Forecast"></option>
                 <option value="✅ Sanity Check"></option>
                 <option value="👨‍👩‍👧‍👦 Parents Checklist"></option>
+                <option value="⚙️ System Parameters"></option>
             </datalist>
         </div>
         
@@ -159,7 +161,8 @@
                 "💬 WhatsApp Messages & Comms": "comms.html",
                 "🌦️ Weather Forecast": "weather.html",
                 "✅ Sanity Check": "sanity-check.html",
-                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html"
+                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html",
+                "⚙️ System Parameters": "system-parameters.html"
             };
             if (routes[val]) {
                 window.location.href = routes[val];

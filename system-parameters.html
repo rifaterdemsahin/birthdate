@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚙️ System Parameters</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #2c3e50; }
+        
+        .nav { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; padding: 10px 15px; background: #2c3e50; color: white; border-radius: 5px; }
+        .nav a:hover { background: #34495e; }
+
+        .param-card { background: #e8f4f8; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; margin-bottom: 20px; }
+        .param-title { margin-top: 0; color: #2980b9; font-size: 1.2em; margin-bottom: 10px; font-weight: bold; border-bottom: 1px solid #bdc3c7; padding-bottom: 5px; }
+        .param-list { list-style-type: none; padding: 0; margin: 0; }
+        .param-list li { padding: 8px 0; border-bottom: 1px dashed #ccc; }
+        .param-list li:last-child { border-bottom: none; }
+        .param-key { font-weight: bold; color: #2c3e50; display: inline-block; width: 150px; }
+        .param-val { color: #e74c3c; font-family: monospace; font-size: 1.1em; background: #fdf2e9; padding: 2px 6px; border-radius: 3px; }
+
+        /* Responsive Overrides */
+        @media (max-width: 600px) {
+            .container { padding: 15px; margin: 10px; }
+            .nav { flex-direction: column; gap: 10px; }
+            .nav a { text-align: center; width: 100%; box-sizing: border-box; }
+            #siteSearch { width: 100%; max-width: 100%; box-sizing: border-box; }
+        }
+        @media print { .footer, .nav, #siteSearch { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">🏠 Home</a>
+            <a href="arya.html">🎈 Arya</a>
+            <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <a href="venues.html">📍 Venues</a>
+            <a href="weather.html">🌦️ Weather</a>
+            <a href="costs.html">💷 Costs</a>
+            <a href="menu.html">🍔 Menu</a>
+            <a href="sanity-check.html">✅ Sanity</a>
+            <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
+            <a href="comms.html">💬 Comms</a>
+            <a href="system-parameters.html">⚙️ System</a>
+        
+            <input list="searchOptions" id="siteSearch" placeholder="🔍 Quick Search..." onchange="handleSearch(this)" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; flex-grow: 1; min-width: 200px; max-width: 100%;">
+            <datalist id="searchOptions">
+                <option value="📍 Venues & Locations"></option>
+                <option value="💷 Budget & Costs"></option>
+                <option value="🍔 Menu & Shopping List"></option>
+                <option value="📅 Calendar & Dates"></option>
+                <option value="💌 Invitations (Mira & Emma)"></option>
+                <option value="🎈 Invitations (Arya)"></option>
+                <option value="💬 WhatsApp Messages & Comms"></option>
+                <option value="🌦️ Weather Forecast"></option>
+                <option value="✅ Sanity Check"></option>
+                <option value="👨‍👩‍👧‍👦 Parents Checklist"></option>
+                <option value="⚙️ System Parameters"></option>
+            </datalist>
+        </div>
+        
+        <h1>⚙️ System Parameters & Context</h1>
+        <p>This page centralizes the core logic, roles, and constraints passed into the AI context for generating the birthday coordination platform.</p>
+
+        <div class="param-card">
+            <div class="param-title">📍 Global Settings</div>
+            <ul class="param-list">
+                <li><span class="param-key">Home Base / Origin:</span> <span class="param-val">CB1 1BB, Cambridge, UK</span> (Used as origin for transport calculations)</li>
+                <li><span class="param-key">Max Budget:</span> <span class="param-val">£200</span> (Total cap for venues, food, and cake)</li>
+                <li><span class="param-key">Currency:</span> <span class="param-val">GBP (£)</span></li>
+                <li><span class="param-key">Local Port:</span> <span class="param-val">30080</span> (For local testing server)</li>
+            </ul>
+        </div>
+
+        <div class="param-card">
+            <div class="param-title">👯‍♀️ Party Context</div>
+            <ul class="param-list">
+                <li><span class="param-key">Event 1:</span> <span class="param-val">Mira & Emma's Joint Birthday</span></li>
+                <li><span class="param-key">Event 2:</span> <span class="param-val">Arya's Birthday</span></li>
+                <li><span class="param-key">Mira:</span> <span class="param-val">4 Years Old, Brunette</span></li>
+                <li><span class="param-key">Emma:</span> <span class="param-val">4 Years Old, Blonde</span></li>
+                <li><span class="param-key">Target Date:</span> <span class="param-val">Weekend of Oct 24th, 2026</span> (Tentative)</li>
+            </ul>
+        </div>
+
+        <div class="param-card">
+            <div class="param-title">👨‍👩‍👧‍👦 Roles & Stakeholders</div>
+            <ul class="param-list">
+                <li><span class="param-key">Coordinators (Mira):</span> <span class="param-val">Ece Sahin & Rifat Erdem Sahin</span></li>
+                <li><span class="param-key">Coordinators (Emma):</span> <span class="param-val">Ryan & Bekka Walter</span></li>
+            </ul>
+        </div>
+
+        <div class="param-card">
+            <div class="param-title">📋 Core Tasks</div>
+            <ul class="param-list">
+                <li><span class="param-key">Task 1:</span> <span class="param-val">Coordinate Venue & Date Alignment</span></li>
+                <li><span class="param-key">Task 2:</span> <span class="param-val">Manage RSVPs & Guest Count</span></li>
+                <li><span class="param-key">Task 3:</span> <span class="param-val">Generate printable A5 invitations (2 per A4 page)</span></li>
+                <li><span class="param-key">Task 4:</span> <span class="param-val">Manage Tesco Food run & Cake</span></li>
+            </ul>
+        </div>
+
+    </div>
+    
+    <script>
+        function handleSearch(input) {
+            const val = input.value;
+            const routes = {
+                "📍 Venues & Locations": "venues.html",
+                "💷 Budget & Costs": "costs.html",
+                "🍔 Menu & Shopping List": "menu.html",
+                "📅 Calendar & Dates": "calendar.html",
+                "💌 Invitations (Mira & Emma)": "mira-emma.html",
+                "🎈 Invitations (Arya)": "arya.html",
+                "💬 WhatsApp Messages & Comms": "comms.html",
+                "🌦️ Weather Forecast": "weather.html",
+                "✅ Sanity Check": "sanity-check.html",
+                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html",
+                "⚙️ System Parameters": "system-parameters.html"
+            };
+            if (routes[val]) {
+                window.location.href = routes[val];
+            }
+        }
+    </script>
+    
+    <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
+        <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
+    </div>
+</body>
+</html>
