@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arya and Mira's Birthday - Venue Options</title>
+    <title>Venue Options</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
         .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1, h2 { color: #2c3e50; }
+        h1, h2, h3 { color: #2c3e50; }
+        
         .nav { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .nav a { text-decoration: none; padding: 10px 15px; background: #2c3e50; color: white; border-radius: 5px; }
         .nav a:hover { background: #34495e; }
-        .venue-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+
+        .venue-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; transition: transform 0.2s; }
+        .venue-card:hover { border-color: #3498db; box-shadow: 0 2px 8px rgba(52,152,219,0.2); }
+        .venue-card h2 { display: flex; align-items: center; gap: 10px; font-size: 1.4em; margin-top: 0; }
+        
+        input[type="checkbox"] { transform: scale(1.5); cursor: pointer; }
+        
+        .header-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .sort-select { padding: 10px; font-size: 1em; border-radius: 5px; border: 1px solid #ccc; }
+        .copy-btn { width: 100%; padding: 15px; background: #3498db; color: white; border: none; border-radius: 5px; font-size: 1.2em; cursor: pointer; margin-top: 10px; font-weight: bold; transition: background 0.2s; }
+        .copy-btn:hover { background: #2980b9; }
+        @media print { .footer { display: none !important; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="nav">
+
+<div class="nav">
             <a href="index.html">🏠 Home</a>
             <a href="arya.html">🎈 Arya</a>
             <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
@@ -28,86 +41,130 @@
             <a href="sanity-check.html">✅ Sanity</a>
             <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
         </div>
+
+        <div class="header-controls">
+            <h1 style="margin: 0;">📍 Venue Options near CB1 1BB</h1>
+            <select id="sortSelect" class="sort-select" onchange="sortVenues()">
+                <option value="default">Sort by: Recommended</option>
+                <option value="az">Sort A-Z</option>
+                <option value="za">Sort Z-A</option>
+            </select>
+        </div>
         
-        <h1>📍 Venue Options near CB1 1BB</h1>
-        
-        <div class="venue-card">
-            <h2>🧊 Option 1: Ice Skating (Arya's Choice)</h2>
-            <p><strong>Location:</strong> <a href="https://www.google.com/maps/place/Cambridge+Ice+Arena/@52.2127421,0.1817091,667m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47d86ff336f55583:0x706506db5daf8e6d!8m2!3d52.2127421!4d0.1842894!16s%2Fg%2F11fmpyh1wh?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Cambridge Ice Arena</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Great fun for older kids and adults.</p>
-                <p><strong>Cons:</strong> Might be difficult for very young toddlers.</p>
-            </details>
+        <p>Select your favorite venues below and copy the list to share!</p>
+
+        <div id="venueContainer">
+            <div class="venue-card" data-index="1" data-name="Ice Skating">
+                <h2><input type="checkbox" class="venue-select" value="🧊 Ice Skating (Cambridge Ice Arena) - https://www.google.com/maps/place/Cambridge+Ice+Arena/@52.2127421,0.1817091,667m"> 🧊 Option 1: Ice Skating (Arya's Choice)</h2>
+                <p><strong>Location:</strong> <a href="https://www.google.com/maps/place/Cambridge+Ice+Arena/@52.2127421,0.1817091,667m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47d86ff336f55583:0x706506db5daf8e6d!8m2!3d52.2127421!4d0.1842894!16s%2Fg%2F11fmpyh1wh?entry=ttu&g_ep=EgoyMDI2MDkxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank">Cambridge Ice Arena</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Great fun for older kids and adults.</p>
+                    <p><strong>Cons:</strong> Might be difficult for very young toddlers.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="2" data-name="Partyman World Of Play">
+                <h2><input type="checkbox" class="venue-select" value="🏰 Partyman World Of Play - https://maps.app.goo.gl/2Te3nzfm49PMxXQF6"> 🏰 Option 2: Partyman World Of Play (Mira's Choice)</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/2Te3nzfm49PMxXQF6" target="_blank">Partyman World Of Play, Cambridge</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Excellent for energetic toddlers, guaranteed fun, soft play area.</p>
+                    <p><strong>Cons:</strong> Requires booking a sufficiently large indoor space if weather is bad.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="3" data-name="Clip n Climb">
+                <h2><input type="checkbox" class="venue-select" value="🧗‍♀️ Clip 'n Climb Cambridge - https://maps.app.goo.gl/bQ4bQ4bQ4bQ4bQ4bQ"> 🧗‍♀️ Option 7: Clip 'n Climb (Click and Climb)</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/bQ4bQ4bQ4bQ4bQ4bQ" target="_blank">Clip 'n Climb Cambridge</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Great indoor physical activity, super fun for kids.</p>
+                    <p><strong>Cons:</strong> Might need supervision for younger toddlers.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="4" data-name="St Mathews Pieces Park">
+                <h2><input type="checkbox" class="venue-select" value="🌳 St Mathews Pieces Park - https://maps.app.goo.gl/QjtGjuezAqbB7Zpz6"> 🌳 Option 3: St Mathews Pieces Park (For Both)</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/QjtGjuezAqbB7Zpz6" target="_blank">St Matthew's Piece, Cambridge CB1</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Beautiful open space, free, very close to home.</p>
+                    <p><strong>Cons:</strong> Completely weather dependent.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="5" data-name="Bowling at Cambridge Junction">
+                <h2><input type="checkbox" class="venue-select" value="🎳 Bowling at Cambridge Junction - https://maps.app.goo.gl/..."> 🎳 Option 4: Bowling at Cambridge Junction</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/..." target="_blank">Cambridge Leisure Park, Clifton Way, CB1 7GX</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Easy to organize, food included, indoor.</p>
+                    <p><strong>Cons:</strong> Can be noisy.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="6" data-name="Pizza Express">
+                <h2><input type="checkbox" class="venue-select" value="🍕 Pizza Express - https://maps.app.goo.gl/4Zkfcm1jsXJqSvoP7"> 🍕 Option 5: Pizza Express - Pizza Making Day</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/4Zkfcm1jsXJqSvoP7" target="_blank">Pizza Express, Cambridge</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Interactive, fun, handles the food perfectly.</p>
+                    <p><strong>Cons:</strong> Maximum guest limits might apply.</p>
+                </details>
+            </div>
+
+            <div class="venue-card" data-index="7" data-name="Cambridge Botanic Garden">
+                <h2><input type="checkbox" class="venue-select" value="🌺 Cambridge Botanic Garden - https://maps.app.goo.gl/NDnHdTCbWV9xdRTt7"> 🌺 Option 6: Cambridge Botanic Garden</h2>
+                <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/NDnHdTCbWV9xdRTt7" target="_blank">1 Brookside, Cambridge CB2 1JE</a></p>
+                <details>
+                    <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
+                    <p><strong>Pros:</strong> Beautiful outdoor space.</p>
+                    <p><strong>Cons:</strong> Weather dependent.</p>
+                </details>
+            </div>
         </div>
 
-        <div class="venue-card">
-            <h2>🏰 Option 2: Partyman World Of Play (Mira's Choice)</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/2Te3nzfm49PMxXQF6" target="_blank">Partyman World Of Play, Cambridge</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Excellent for energetic toddlers, guaranteed fun, soft play area.</p>
-                <p><strong>Cons:</strong> Requires booking a sufficiently large indoor space if weather is bad.</p>
-            </details>
-        </div>
+        <button class="copy-btn" onclick="copySelectedVenues()">📋 Copy Selected Venue Links</button>
 
-        <div class="venue-card">
-            <h2>🧗‍♀️ Option 7: Clip 'n Climb (Click and Climb)</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/bQ4bQ4bQ4bQ4bQ4bQ" target="_blank">Clip 'n Climb Cambridge</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Great indoor physical activity, super fun for kids.</p>
-                <p><strong>Cons:</strong> Might need supervision for younger toddlers.</p>
-            </details>
-        </div>
-
-        <div class="venue-card">
-            <h2>🌳 Option 3: St Mathews Pieces Park (For Both)</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/QjtGjuezAqbB7Zpz6" target="_blank">St Matthew's Piece, Cambridge CB1</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Beautiful open space, free, very close to home.</p>
-                <p><strong>Cons:</strong> Completely weather dependent.</p>
-            </details>
-        </div>
-
-        <div class="venue-card">
-            <h2>🎳 Option 4: Bowling at Cambridge Junction</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/..." target="_blank">Cambridge Leisure Park, Clifton Way, CB1 7GX</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Easy to organize, food included, indoor.</p>
-                <p><strong>Cons:</strong> Can be noisy.</p>
-            </details>
-        </div>
-
-        <div class="venue-card">
-            <h2>🍕 Option 5: Pizza Express - Pizza Making Day</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/4Zkfcm1jsXJqSvoP7" target="_blank">Pizza Express, Cambridge</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Interactive, fun, handles the food perfectly.</p>
-                <p><strong>Cons:</strong> Maximum guest limits might apply.</p>
-            </details>
-        </div>
-
-        <div class="venue-card">
-            <h2>🌺 Option 6: Cambridge Botanic Garden</h2>
-            <p><strong>Location:</strong> <a href="https://maps.app.goo.gl/NDnHdTCbWV9xdRTt7" target="_blank">1 Brookside, Cambridge CB2 1JE</a></p>
-            <details>
-                <summary style="cursor: pointer; font-weight: bold; color: #3498db;">Pros & Cons</summary>
-                <p><strong>Pros:</strong> Beautiful outdoor space.</p>
-                <p><strong>Cons:</strong> Weather dependent.</p>
-            </details>
-        </div>
     </div>
+    
+    <script>
+        function sortVenues() {
+            const container = document.getElementById('venueContainer');
+            const cards = Array.from(container.getElementsByClassName('venue-card'));
+            const sortType = document.getElementById('sortSelect').value;
 
-    <style>
-        @media print { .footer { display: none !important; } }
-    </style>
-    <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
+            if (sortType === 'default') {
+                cards.sort((a, b) => parseInt(a.dataset.index) - parseInt(b.dataset.index));
+            } else if (sortType === 'az') {
+                cards.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
+            } else if (sortType === 'za') {
+                cards.sort((a, b) => b.dataset.name.localeCompare(a.dataset.name));
+            }
+
+            // Re-append in new order
+            cards.forEach(card => container.appendChild(card));
+        }
+
+        function copySelectedVenues() {
+            const selected = document.querySelectorAll('.venue-select:checked');
+            if (selected.length === 0) {
+                alert("Please select at least one venue to copy!");
+                return;
+            }
+            let text = "📍 Our Shortlisted Venues:\n\n";
+            selected.forEach(cb => {
+                text += "✅ " + cb.value + "\n\n";
+            });
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Selected venues copied to clipboard! You can now paste them in WhatsApp/Email.");
+            });
+        }
+    </script>
+
+<div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
         <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
     </div>
 </body>
-
 </html>
