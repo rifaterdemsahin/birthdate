@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya and Mira's Birthday Party Coordination</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #2c3e50; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .section { margin-bottom: 30px; }
+        .parents { font-style: italic; color: #7f8c8d; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f9fa; }
+        .print-btn { display: block; width: 100%; padding: 15px; background: #3498db; color: #fff; text-align: center; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; margin-top: 20px; }
+        .print-btn:hover { background: #2980b9; }
+        
+        @media print {
+            body { background: #fff; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            .print-btn { display: none; }
+        }
+        
+        .card-preview { border: 2px dashed #bdc3c7; padding: 20px; text-align: center; margin-top: 20px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎉 Arya and Mira's Birthday Party 🎉</h1>
+            <p class="parents">Coordinated by Ece Sahin & Rifat Erdem Sahin</p>
+            <p><strong>Location:</strong> CB1 1BB</p>
+        </div>
+
+        <div class="section">
+            <h2>📅 Dates & Calendar</h2>
+            <ul>
+                <li><strong>Mira's Birth Date:</strong> 21 October 2022</li>
+                <li><strong>Planned Party Date:</strong> TBD</li>
+                <li><strong>RSVP Deadline:</strong> TBD</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>📝 Invitation List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status (RSVP)</th>
+                        <th>Dietary Requirements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Example Guest 1</td>
+                        <td>Pending</td>
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <td>Example Guest 2</td>
+                        <td>Accepted</td>
+                        <td>Vegetarian</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🖨️ Print Cards</h2>
+            <p>Use the printable card below for physical invitations.</p>
+            <div class="card-preview">
+                <h3>You're Invited!</h3>
+                <p>Join us to celebrate the birthdays of <strong>Arya & Mira Sahin</strong>!</p>
+                <p><strong>Where:</strong> CB1 1BB</p>
+                <p><strong>When:</strong> [Date & Time]</p>
+                <p><strong>RSVP:</strong> Ece & Rifat Erdem Sahin</p>
+            </div>
+            <button class="print-btn" onclick="window.print()">Print Invitations</button>
+        </div>
+    </div>
+</body>
+</html>
