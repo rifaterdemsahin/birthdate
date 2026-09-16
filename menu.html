@@ -58,7 +58,37 @@
                 <li>Sparkling Water</li>
             </ul>
         </div>
+
+        <div class="menu-section">
+            <h3>🛒 Tesco Shopping List</h3>
+            <ul class="checklist" style="list-style-type: none; padding-left: 0;">
+                <li><label><input type="checkbox" id="t1" class="tesco-chk" onchange="saveTesco()"> 🍞 Sandwich bread & wraps</label></li>
+                <li><label><input type="checkbox" id="t2" class="tesco-chk" onchange="saveTesco()"> 🧀 Cheese slices, ham</label></li>
+                <li><label><input type="checkbox" id="t3" class="tesco-chk" onchange="saveTesco()"> 🍇 Grapes, melons, strawberries</label></li>
+                <li><label><input type="checkbox" id="t4" class="tesco-chk" onchange="saveTesco()"> 🧃 Juice boxes (multi-pack)</label></li>
+                <li><label><input type="checkbox" id="t5" class="tesco-chk" onchange="saveTesco()"> 🧻 Napkins, paper plates, cups</label></li>
+            </ul>
+            <button onclick="copyTesco()" style="margin-top: 10px; padding: 5px 10px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">📋 Copy List</button>
+        </div>
     </div>
+
+    <script>
+        function saveTesco() {
+            document.querySelectorAll('.tesco-chk').forEach(c => localStorage.setItem('tesco_' + c.id, c.checked));
+        }
+        function copyTesco() {
+            let text = "🛒 Tesco Shopping List:\n";
+            document.querySelectorAll('.tesco-chk').forEach(c => {
+                text += (c.checked ? "✅ " : "❌ ") + c.parentElement.innerText + "\n";
+            });
+            navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard!"));
+        }
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.tesco-chk').forEach(c => {
+                if (localStorage.getItem('tesco_' + c.id) === 'true') c.checked = true;
+            });
+        });
+    </script>
 
     <style>
         @media print { .footer { display: none !important; } }
