@@ -25,25 +25,53 @@
         
         .card-preview { 
             border: 2px solid #9b59b6; 
-            padding: 30px; 
+            padding: 20px; 
             text-align: center; 
             margin-top: 20px; 
             border-radius: 15px;
-            background-color: #f5eef8; 
+            background-color: rgba(255, 255, 255, 0.85);
+            background-image: linear-gradient(rgba(245, 238, 248, 0.9), rgba(245, 238, 248, 0.9)), url('img/mira_ema_party.jpg');
+            background-size: cover;
+            background-position: center;
             color: #2c3e50;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
         }
-        .card-preview h3 { color: #e74c3c; font-size: 2em; margin-bottom: 10px; }
+        .card-preview h3 { color: #e74c3c; font-size: 2em; margin-bottom: 5px; }
         .card-preview strong { color: #8e44ad; }
 
+        .print-only { display: none; }
+
         @media print {
+            @page { size: A4 portrait; margin: 0; }
             body { background: #fff; padding: 0; }
             .container { box-shadow: none; padding: 0; max-width: 100%; border: none; }
-            .nav, .header, .form-section, .print-btn, h2 { display: none !important; }
-            .card-preview {
-                width: 100%; height: 100vh; border: none; box-shadow: none; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 24px; background-color: #f5eef8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            .nav, .header, .form-section, .print-btn, h2, .footer { display: none !important; }
+            
+            .print-wrapper {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                padding: 1cm;
+                box-sizing: border-box;
+                gap: 1cm;
             }
-            .card-preview h3 { font-size: 3em; }
+            .card-preview {
+                flex: 1; /* take half height */
+                border: 2px dashed #ccc;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                background-color: #f5eef8 !important;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                border-radius: 0;
+            }
+            .print-only { display: flex; }
+            .card-preview h3 { font-size: 2.5em; }
         }
     </style>
 </head>
@@ -82,7 +110,8 @@
                 <label for="partyTheme">Party Theme:</label>
                 <select id="partyTheme" onchange="updateCard()">
                     <option value="🦄 Unicorns & Magic">🦄 Unicorns & Magic</option>
-                    <option value="🏰 Bouncing Castles">🏰 Bouncing Castles</option>
+                    <option value="🏰 Partyman World Of Play">🏰 Partyman World Of Play</option>
+                    <option value="🧗‍♀️ Clip 'n Climb">🧗‍♀️ Clip 'n Climb</option>
                     <option value="🦖 Dinosaur Adventure">🦖 Dinosaur Adventure</option>
                 </select>
             </div>
@@ -94,26 +123,40 @@
             
             <div class="form-group">
                 <label for="partyLocation">Location Name:</label>
-                <input type="text" id="partyLocation" value="St Mathews Pieces Park" onkeyup="updateCard()">
+                <input type="text" id="partyLocation" value="Partyman World Of Play" onkeyup="updateCard()">
             </div>
             
             <div class="form-group">
                 <label for="partyAddress">Address (Postcode):</label>
-                <input type="text" id="partyAddress" value="CB1 1BB, Cambridge, UK" onkeyup="updateCard()">
+                <input type="text" id="partyAddress" value="Cambridge, UK" onkeyup="updateCard()">
             </div>
         </div>
 
         <div class="section">
-            <h2>🖨️ Printable Card Preview</h2>
-            <div class="card-preview" id="printableCard">
-                <h3>You're Invited!</h3>
-                <p>Dear <strong id="outGuest">Friend</strong>,</p>
-                <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Ema</strong>!</p>
-                <p><strong>Theme:</strong> <span id="outTheme">🦄 Unicorns & Magic</span></p>
-                <p><strong>When:</strong> <span id="outDate">Saturday, October 24th at 2:00 PM</span></p>
-                <p><strong>Where:</strong> <span id="outLocation">St Mathews Pieces Park</span></p>
-                <p><strong>Address:</strong> <span id="outAddress">CB1 1BB, Cambridge, UK</span></p>
-                <p><strong>RSVP to:</strong> Ece, Rifat & Ema's Parents</p>
+            <h2>🖨️ Printable Card Preview (2x A5 on A4)</h2>
+            <div class="print-wrapper">
+                <!-- Card 1 -->
+                <div class="card-preview">
+                    <h3>You're Invited!</h3>
+                    <p>Dear <strong class="outGuest">Friend</strong>,</p>
+                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Ema</strong>!</p>
+                    <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
+                    <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
+                    <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
+                    <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
+                    <p><strong>RSVP to:</strong> Ece, Rifat & Ema's Parents</p>
+                </div>
+                <!-- Card 2 (For Printing) -->
+                <div class="card-preview print-only">
+                    <h3>You're Invited!</h3>
+                    <p>Dear <strong class="outGuest">Friend</strong>,</p>
+                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Ema</strong>!</p>
+                    <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
+                    <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
+                    <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
+                    <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
+                    <p><strong>RSVP to:</strong> Ece, Rifat & Ema's Parents</p>
+                </div>
             </div>
             <button class="print-btn" onclick="window.print()">Print Mira & Ema's PDF Card</button>
         </div>
@@ -121,11 +164,17 @@
 
     <script>
         function updateCard() {
-            document.getElementById('outGuest').innerText = document.getElementById('guestName').value;
-            document.getElementById('outTheme').innerText = document.getElementById('partyTheme').value;
-            document.getElementById('outDate').innerText = document.getElementById('partyDate').value;
-            document.getElementById('outLocation').innerText = document.getElementById('partyLocation').value;
-            document.getElementById('outAddress').innerText = document.getElementById('partyAddress').value;
+            const guest = document.getElementById('guestName').value;
+            const theme = document.getElementById('partyTheme').value;
+            const date = document.getElementById('partyDate').value;
+            const loc = document.getElementById('partyLocation').value;
+            const addr = document.getElementById('partyAddress').value;
+
+            document.querySelectorAll('.outGuest').forEach(el => el.innerText = guest);
+            document.querySelectorAll('.outTheme').forEach(el => el.innerText = theme);
+            document.querySelectorAll('.outDate').forEach(el => el.innerText = date);
+            document.querySelectorAll('.outLocation').forEach(el => el.innerText = loc);
+            document.querySelectorAll('.outAddress').forEach(el => el.innerText = addr);
         }
     </script>
 
