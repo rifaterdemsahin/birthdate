@@ -52,7 +52,8 @@
         <div class="nav">
             <a href="index.html">🏠 Home</a>
             <a href="arya.html">🎈 Arya</a>
-            <a href="mira-ema.html">👯‍♀️ Mira & Ema</a>
+            <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
+            <a href="calendar.html">📅 Calendar</a>
             <a href="venues.html">📍 Venues</a>
             <a href="weather.html">🌦️ Weather</a>
             <a href="costs.html">💷 Costs</a>
@@ -136,6 +137,16 @@
     <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
         <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
     </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const savedDate = localStorage.getItem('globalPartyDate');
+            if (savedDate) {
+                document.getElementById('partyDate').value = savedDate;
+                if (typeof updateCard === 'function') updateCard();
+            }
+        });
+    </script>
 </body>
 
 </html>

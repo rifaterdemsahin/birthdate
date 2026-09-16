@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mira & Ema's Joint Birthday Party</title>
+    <title>Mira & Emma's Joint Birthday Party</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
         .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
@@ -80,7 +80,8 @@
         <div class="nav">
             <a href="index.html">🏠 Home</a>
             <a href="arya.html">🎈 Arya</a>
-            <a href="mira-ema.html">👯‍♀️ Mira & Ema</a>
+            <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
+            <a href="calendar.html">📅 Calendar</a>
             <a href="venues.html">📍 Venues</a>
             <a href="weather.html">🌦️ Weather</a>
             <a href="costs.html">💷 Costs</a>
@@ -90,8 +91,8 @@
         </div>
 
         <div class="header">
-            <h1>🎉 Mira & Ema's Joint Birthday Party 🎉</h1>
-            <p>Coordinated by Ece Sahin, Rifat Erdem Sahin & Ema's Parents</p>
+            <h1>🎉 Mira & Emma's Joint Birthday Party 🎉</h1>
+            <p>Coordinated by Ece Sahin, Rifat Erdem Sahin & Emma's Parents</p>
         </div>
 
         <div class="section form-section">
@@ -139,26 +140,26 @@
                 <div class="card-preview">
                     <h3>You're Invited!</h3>
                     <p>Dear <strong class="outGuest">Friend</strong>,</p>
-                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Ema</strong>!</p>
+                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Emma Walter</strong>!</p>
                     <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
                     <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
                     <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
                     <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
-                    <p><strong>RSVP to:</strong> Ece, Rifat & Ema's Parents</p>
+                    <p><strong>RSVP to:</strong> Ece, Rifat & Emma's Parents</p>
                 </div>
                 <!-- Card 2 (For Printing) -->
                 <div class="card-preview print-only">
                     <h3>You're Invited!</h3>
                     <p>Dear <strong class="outGuest">Friend</strong>,</p>
-                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Ema</strong>!</p>
+                    <p>Join us to celebrate the joint birthdays of <strong>Mira Sahin & Emma Walter</strong>!</p>
                     <p><strong>Theme:</strong> <span class="outTheme">🦄 Unicorns & Magic</span></p>
                     <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
                     <p><strong>Where:</strong> <span class="outLocation">Partyman World Of Play</span></p>
                     <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
-                    <p><strong>RSVP to:</strong> Ece, Rifat & Ema's Parents</p>
+                    <p><strong>RSVP to:</strong> Ece, Rifat & Emma's Parents</p>
                 </div>
             </div>
-            <button class="print-btn" onclick="window.print()">Print Mira & Ema's PDF Card</button>
+            <button class="print-btn" onclick="window.print()">Print Mira & Emma's PDF Card</button>
         </div>
     </div>
 
@@ -184,6 +185,16 @@
     <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
         <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
     </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const savedDate = localStorage.getItem('globalPartyDate');
+            if (savedDate) {
+                document.getElementById('partyDate').value = savedDate;
+                if (typeof updateCard === 'function') updateCard();
+            }
+        });
+    </script>
 </body>
 
 </html>

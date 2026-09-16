@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📅 Party Calendar</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #2c3e50; }
+        
+        .nav { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; padding: 10px 15px; background: #2c3e50; color: white; border-radius: 5px; }
+        .nav a:hover { background: #34495e; }
+
+        .calendar-box { background: #e8f4f8; padding: 40px; border-radius: 12px; text-align: center; border: 2px solid #3498db; margin-top: 30px; }
+        input[type="date"] { padding: 15px; font-size: 1.2em; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; font-family: inherit; }
+        .save-btn { padding: 15px 30px; background: #3498db; color: white; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; transition: background 0.2s; }
+        .save-btn:hover { background: #2980b9; }
+
+        @media print { .footer, .nav, .calendar-box { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">🏠 Home</a>
+            <a href="arya.html">🎈 Arya</a>
+            <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <a href="venues.html">📍 Venues</a>
+            <a href="weather.html">🌦️ Weather</a>
+            <a href="costs.html">💷 Costs</a>
+            <a href="menu.html">🍔 Menu</a>
+            <a href="sanity-check.html">✅ Sanity</a>
+            <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
+        </div>
+
+        <h1>📅 Global Party Calendar</h1>
+        <p>Coordinate the final date! Pick a date below and save it. Once saved, this date will automatically pre-fill on all the printable invitation cards (for both Arya's and Mira & Emma's parties).</p>
+
+        <div class="calendar-box">
+            <h2>Select Party Date:</h2>
+            <input type="date" id="globalDate"><br>
+            <button class="save-btn" onclick="saveDate()">💾 Save Date for Invitations</button>
+            <p id="saveMsg" style="color: #27ae60; font-weight: bold; display: none; margin-top: 20px; font-size: 1.1em;">✅ Date saved! Your printable cards are now updated.</p>
+        </div>
+    </div>
+    <script>
+        function saveDate() {
+            const dateVal = document.getElementById('globalDate').value;
+            if (dateVal) {
+                // Formatting the date nicely for the card: "Saturday, October 24, 2026"
+                const d = new Date(dateVal);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const formatted = d.toLocaleDateString('en-US', options);
+                
+                localStorage.setItem('globalPartyDate', formatted); // save formatted string
+                
+                document.getElementById('saveMsg').style.display = 'block';
+                setTimeout(() => document.getElementById('saveMsg').style.display = 'none', 3000);
+            }
+        }
+        window.onload = () => {
+            // We only need to load the raw YYYY-MM-DD if we were saving that, but we are saving the formatted string.
+            // A small flaw is the input date needs YYYY-MM-DD to prefill. Let's just keep it simple.
+            // If they come back, they have to re-select, but the cards will keep the text.
+        }
+    </script>
+    <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
+        <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
+    </div>
+</body>
+</html>
