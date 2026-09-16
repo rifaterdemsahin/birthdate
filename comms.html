@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 Comms & Scripts</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #2c3e50; }
+        
+        .nav { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; padding: 10px 15px; background: #2c3e50; color: white; border-radius: 5px; }
+        .nav a:hover { background: #34495e; }
+
+        .comms-card { background: #e8f4f8; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; margin-bottom: 20px; position: relative; }
+        .comms-title { margin-top: 0; color: #2980b9; font-size: 1.2em; margin-bottom: 10px; font-weight: bold; }
+        .comms-text { font-family: monospace; background: #fff; padding: 15px; border-radius: 4px; border: 1px dashed #ccc; white-space: pre-wrap; margin-bottom: 15px; font-size: 1.1em; color: #333; }
+        .copy-btn { padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 4px; font-size: 1em; cursor: pointer; transition: background 0.2s; }
+        .copy-btn:hover { background: #2980b9; }
+
+        @media print { .footer, .nav, .copy-btn { display: none !important; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+<div class="nav">
+            <a href="index.html">🏠 Home</a>
+            <a href="arya.html">🎈 Arya</a>
+            <a href="mira-emma.html">👯‍♀️ Mira & Emma</a>
+            <a href="calendar.html">📅 Calendar</a>
+            <a href="venues.html">📍 Venues</a>
+            <a href="weather.html">🌦️ Weather</a>
+            <a href="costs.html">💷 Costs</a>
+            <a href="menu.html">🍔 Menu</a>
+            <a href="sanity-check.html">✅ Sanity</a>
+            <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
+            <a href="comms.html">💬 Comms</a>
+        </div>
+
+        <h1>💬 Communications & Scripts</h1>
+        <p>Ready-to-use WhatsApp templates for coordinating with Ryan and effortlessly answering common parent questions.</p>
+
+        <h2>👨‍💼 Coordinating with Ryan (Emma's Dad)</h2>
+
+        <div class="comms-card">
+            <div class="comms-title">1. Initial Venue & Date Alignment</div>
+            <div class="comms-text" id="ryan1">Hi Ryan! Hope you're doing well. We are starting to plan the joint birthday party for Mira and Emma! 🎉 
+
+We've shortlisted a few venues (Partyman World of Play and St Mathews Pieces are our top picks). Does the weekend of Oct 24th work for you guys? Let us know when you have 10 mins to catch up on logistics!</div>
+            <button class="copy-btn" onclick="copyText('ryan1')">📋 Copy for WhatsApp</button>
+        </div>
+
+        <div class="comms-card">
+            <div class="comms-title">2. Splitting Tasks (Cake & Food)</div>
+            <div class="comms-text" id="ryan2">Hey Ryan, we're putting together the food and cake plan. We were thinking we could order a joint cake, or two separate smaller ones. 
+
+Also, we’re happy to handle the Tesco run for the kids' sandwiches and juices if you guys want to look into the party favors/goodie bags? Let us know what you think!</div>
+            <button class="copy-btn" onclick="copyText('ryan2')">📋 Copy for WhatsApp</button>
+        </div>
+
+        <h2>👨‍👩‍👧‍👦 Replies to Other Parents</h2>
+
+        <div class="comms-card">
+            <div class="comms-title">1. Answering "What should we get for a gift?"</div>
+            <div class="comms-text" id="parent1">Thanks so much for asking! Your presence is honestly the best gift for the girls. However, if you'd really like to get them something, they are both currently obsessed with [Insert Interest, e.g., coloring books / play-doh]. No pressure at all though! 💖</div>
+            <button class="copy-btn" onclick="copyText('parent1')">📋 Copy for WhatsApp</button>
+        </div>
+
+        <div class="comms-card">
+            <div class="comms-title">2. Answering "Can I bring siblings?"</div>
+            <div class="comms-text" id="parent2">Yes, absolutely! Siblings are more than welcome to join the fun. Just let us know how many are coming so we can give the venue a final headcount and ensure we have enough food. 🎈</div>
+            <button class="copy-btn" onclick="copyText('parent2')">📋 Copy for WhatsApp</button>
+        </div>
+
+        <div class="comms-card">
+            <div class="comms-title">3. Answering "Are there dietary options available?"</div>
+            <div class="comms-text" id="parent3">Yes! We are making sure to have vegetarian and nut-free options available for the kids. If your little one has any specific allergies or dietary requirements, please just let us know by [Date] so we can prepare! 🥪</div>
+            <button class="copy-btn" onclick="copyText('parent3')">📋 Copy for WhatsApp</button>
+        </div>
+
+    </div>
+    
+    <script>
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Message copied to clipboard! You can now paste it into WhatsApp.");
+            });
+        }
+    </script>
+    
+    <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
+        <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
+    </div>
+</body>
+</html>
