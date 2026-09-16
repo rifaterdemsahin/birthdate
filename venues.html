@@ -278,12 +278,18 @@
                 alert("Please select at least one venue to copy!");
                 return;
             }
-            let text = "📍 Our Shortlisted Venues:\n\n";
-            selected.forEach(cb => {
-                text += "✅ " + cb.value + "\n\n";
+            
+            // Note: Since querySelectorAll returns elements in DOM order, 
+            // this perfectly preserves whatever sorting order the user has active.
+            let text = "📍 Our Shortlisted Venues (in preferred order):\n\n";
+            
+            selected.forEach((cb, index) => {
+                let rank = index + 1;
+                text += `${rank}. ✅ ${cb.value}\n\n`;
             });
+            
             navigator.clipboard.writeText(text).then(() => {
-                alert("Selected venues copied to clipboard! You can now paste them in WhatsApp/Email.");
+                alert("Selected venues (with their sorted rankings!) copied to clipboard! You can now paste them in WhatsApp/Email.");
             });
         }
     </script>
