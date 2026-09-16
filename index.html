@@ -89,10 +89,22 @@
                     <option value="Neighbor">Neighbor</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="partyTheme">Party Theme:</label>
+                <select id="partyTheme" onchange="updateCard()">
+                    <option value="🦄 Unicorns & Magic">🦄 Unicorns & Magic</option>
+                    <option value="🦖 Dinosaur Adventure">🦖 Dinosaur Adventure</option>
+                    <option value="🧊 Ice Skating / Winter">🧊 Ice Skating / Winter</option>
+                    <option value="🏰 Bouncing Castles">🏰 Bouncing Castles</option>
+                    <option value="🎳 Bowling Stars">🎳 Bowling Stars</option>
+                    <option value="🍕 Pizza Making">🍕 Pizza Making</option>
+                </select>
+            </div>
             
             <div class="form-group">
                 <label for="partyDate">Date & Time:</label>
-                <input type="text" id="partyDate" value="Saturday, October 28th at 2:00 PM" onkeyup="updateCard()">
+                <input type="text" id="partyDate" value="Saturday, October 24th at 2:00 PM" onkeyup="updateCard()">
             </div>
             
             <div class="form-group">
@@ -112,7 +124,8 @@
                 <h3>You're Invited!</h3>
                 <p>Dear <strong id="outGuest">Friend</strong>,</p>
                 <p>Join us to celebrate the birthdays of <strong>Arya & Mira Sahin</strong>!</p>
-                <p><strong>When:</strong> <span id="outDate">Saturday, October 28th at 2:00 PM</span></p>
+                <p><strong>Theme:</strong> <span id="outTheme">🦄 Unicorns & Magic</span></p>
+                <p><strong>When:</strong> <span id="outDate">Saturday, October 24th at 2:00 PM</span></p>
                 <p><strong>Where:</strong> <span id="outLocation">Cambridge Botanic Garden</span></p>
                 <p><strong>Address:</strong> <span id="outAddress">CB1 1BB, Cambridge, UK</span></p>
                 <p><strong>RSVP to:</strong> Ece & Rifat Erdem Sahin</p>
@@ -124,6 +137,7 @@
     <script>
         function updateCard() {
             document.getElementById('outGuest').innerText = document.getElementById('guestName').value;
+            document.getElementById('outTheme').innerText = document.getElementById('partyTheme').value;
             document.getElementById('outDate').innerText = document.getElementById('partyDate').value;
             document.getElementById('outLocation').innerText = document.getElementById('partyLocation').value;
             document.getElementById('outAddress').innerText = document.getElementById('partyAddress').value;
