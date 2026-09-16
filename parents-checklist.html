@@ -15,6 +15,15 @@
         .checklist { list-style-type: none; padding: 0; }
         .checklist li { margin-bottom: 12px; font-size: 1.1em; display: flex; align-items: center; }
         input[type="checkbox"] { transform: scale(1.5); margin-right: 15px; cursor: pointer; }
+    
+        /* Responsive Overrides */
+        @media (max-width: 600px) {
+            .container { padding: 15px; margin: 10px; }
+            .nav { flex-direction: column; gap: 10px; }
+            .nav a { text-align: center; width: 100%; box-sizing: border-box; }
+            #siteSearch { width: 100%; max-width: 100%; box-sizing: border-box; }
+        }
+        @media print { #siteSearch { display: none !important; } }
     </style>
 </head>
 <body>
@@ -31,6 +40,20 @@
             <a href="sanity-check.html">✅ Sanity</a>
             <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
             <a href="comms.html">💬 Comms</a>
+        
+            <input list="searchOptions" id="siteSearch" placeholder="🔍 Quick Search..." onchange="handleSearch(this)" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; flex-grow: 1; min-width: 200px; max-width: 100%;">
+            <datalist id="searchOptions">
+                <option value="📍 Venues & Locations"></option>
+                <option value="💷 Budget & Costs"></option>
+                <option value="🍔 Menu & Shopping List"></option>
+                <option value="📅 Calendar & Dates"></option>
+                <option value="💌 Invitations (Mira & Emma)"></option>
+                <option value="🎈 Invitations (Arya)"></option>
+                <option value="💬 WhatsApp Messages & Comms"></option>
+                <option value="🌦️ Weather Forecast"></option>
+                <option value="✅ Sanity Check"></option>
+                <option value="👨‍👩‍👧‍👦 Parents Checklist"></option>
+            </datalist>
         </div>
         
         <h1>👨‍👩‍👧‍👦 Parents' Master Checklist</h1>
@@ -109,10 +132,40 @@
 
     <style>
         @media print { .footer { display: none !important; } }
+    
+        /* Responsive Overrides */
+        @media (max-width: 600px) {
+            .container { padding: 15px; margin: 10px; }
+            .nav { flex-direction: column; gap: 10px; }
+            .nav a { text-align: center; width: 100%; box-sizing: border-box; }
+            #siteSearch { width: 100%; max-width: 100%; box-sizing: border-box; }
+        }
+        @media print { #siteSearch { display: none !important; } }
     </style>
     <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
         <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
     </div>
+
+    <script>
+        function handleSearch(input) {
+            const val = input.value;
+            const routes = {
+                "📍 Venues & Locations": "venues.html",
+                "💷 Budget & Costs": "costs.html",
+                "🍔 Menu & Shopping List": "menu.html",
+                "📅 Calendar & Dates": "calendar.html",
+                "💌 Invitations (Mira & Emma)": "mira-emma.html",
+                "🎈 Invitations (Arya)": "arya.html",
+                "💬 WhatsApp Messages & Comms": "comms.html",
+                "🌦️ Weather Forecast": "weather.html",
+                "✅ Sanity Check": "sanity-check.html",
+                "👨‍👩‍👧‍👦 Parents Checklist": "parents-checklist.html"
+            };
+            if (routes[val]) {
+                window.location.href = routes[val];
+            }
+        }
+    </script>
 </body>
 
 </html>
