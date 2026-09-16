@@ -36,15 +36,47 @@
         .card-preview h3 { color: #e74c3c; font-size: 2em; margin-bottom: 10px; }
         .card-preview strong { color: #2980b9; }
 
-        @media print {
-            body { background: #fff; padding: 0; }
-            .container { box-shadow: none; padding: 0; max-width: 100%; border: none; }
-            .nav, .header, .form-section, .print-btn, h2 { display: none !important; }
-            .card-preview {
-                width: 100%; height: 100vh; border: none; box-shadow: none; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 24px; background-color: #ebf5fb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+                @media print {
+            @page { size: A4 portrait; margin: 0; }
+            body, html { margin: 0; padding: 0; width: 210mm; height: 297mm; background: #fff; }
+            .container { box-shadow: none; padding: 0; margin: 0; width: 100%; height: 100%; border: none; }
+            .nav, .header, .form-section, .print-btn, h2, .footer { display: none !important; }
+            
+            .section { margin: 0; padding: 0; height: 100%; }
+            .print-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: 210mm;
+                height: 297mm;
+                padding: 10mm;
+                box-sizing: border-box;
+                justify-content: space-between;
+                page-break-after: avoid;
+                page-break-inside: avoid;
             }
-            .card-preview h3 { font-size: 3em; }
+            .card-preview {
+                height: 132mm;
+                width: 100%;
+                margin: 0;
+                border: 2px dashed #ccc;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                background-color: #f5eef8 !important;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                border-radius: 0;
+                box-sizing: border-box;
+                page-break-inside: avoid;
+            }
+            .print-only { display: flex !important; }
+            .card-preview h3 { font-size: 2.2em; margin-bottom: 5px; }
+            .card-preview p { margin: 5px 0; }
         }
+        .print-only { display: none; }
     </style>
 </head>
 <body>
@@ -107,18 +139,34 @@
 
         <div class="section">
             <h2>🖨️ Printable Card Preview</h2>
-            <div class="card-preview" id="printableCard">
+            <div class="print-wrapper">
+                <!-- Card 1 -->
+                <div class="card-preview" id="printableCard">
                 <h3>You're Invited!</h3>
-                <p>Dear <strong id="outGuest">Friend</strong>,</p>
+                <p>Dear <strong class="outGuest">Friend</strong>,</p>
                 <p>Join us to celebrate the birthday of <strong>Arya Sahin</strong>!</p>
-                <p><strong>Theme:</strong> <span id="outTheme">🧊 Ice Skating / Winter</span></p>
-                <p><strong>When:</strong> <span id="outDate">Saturday, October 24th at 2:00 PM</span></p>
-                <p><strong>Where:</strong> <span id="outLocation">Cambridge Ice Arena</span></p>
-                <p><strong>Address:</strong> <span id="outAddress">Cambridge, UK</span></p>
+                <p><strong>Theme:</strong> <span class="outTheme">🧊 Ice Skating / Winter</span></p>
+                <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
+                <p><strong>Where:</strong> <span class="outLocation">Cambridge Ice Arena</span></p>
+                <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
                 <p><strong>RSVP to:</strong> Ece & Rifat Erdem Sahin</p>
 <div style="margin-top: 20px; font-size: 0.55em; color: #555; text-align: center; border-top: 1px dashed #ccc; padding-top: 10px;">
                         Open Source Party Planning: <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">github.com/rifaterdemsahin/birthdate</a>
                     </div>
+                <!-- Card 2 (For Printing) -->
+                <div class="card-preview print-only" class="card-preview print-only">
+                <h3>You're Invited!</h3>
+                <p>Dear <strong class="outGuest">Friend</strong>,</p>
+                <p>Join us to celebrate the birthday of <strong>Arya Sahin</strong>!</p>
+                <p><strong>Theme:</strong> <span class="outTheme">🧊 Ice Skating / Winter</span></p>
+                <p><strong>When:</strong> <span class="outDate">Saturday, October 24th at 2:00 PM</span></p>
+                <p><strong>Where:</strong> <span class="outLocation">Cambridge Ice Arena</span></p>
+                <p><strong>Address:</strong> <span class="outAddress">Cambridge, UK</span></p>
+                <p><strong>RSVP to:</strong> Ece & Rifat Erdem Sahin</p>
+<div style="margin-top: 20px; font-size: 0.55em; color: #555; text-align: center; border-top: 1px dashed #ccc; padding-top: 10px;">
+                        Open Source Party Planning: <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">github.com/rifaterdemsahin/birthdate</a>
+                    </div>
+            </div>
             </div>
             <button class="print-btn" onclick="window.print()">Print Arya's PDF Card</button>
         </div>
@@ -126,16 +174,62 @@
 
     <script>
         function updateCard() {
-            document.getElementById('outGuest').innerText = document.getElementById('guestName').value;
-            document.getElementById('outTheme').innerText = document.getElementById('partyTheme').value;
-            document.getElementById('outDate').innerText = document.getElementById('partyDate').value;
-            document.getElementById('outLocation').innerText = document.getElementById('partyLocation').value;
-            document.getElementById('outAddress').innerText = document.getElementById('partyAddress').value;
+            const guest = document.getElementById('guestName').value;
+            const theme = document.getElementById('partyTheme').value;
+            const date = document.getElementById('partyDate').value;
+            const loc = document.getElementById('partyLocation').value;
+            const addr = document.getElementById('partyAddress').value;
+
+            document.querySelectorAll('.outGuest, #outGuest').forEach(el => el.innerText = guest);
+            document.querySelectorAll('.outTheme, #outTheme').forEach(el => el.innerText = theme);
+            document.querySelectorAll('.outDate, #outDate').forEach(el => el.innerText = date);
+            document.querySelectorAll('.outLocation, #outLocation').forEach(el => el.innerText = loc);
+            document.querySelectorAll('.outAddress, #outAddress').forEach(el => el.innerText = addr);
         }
     </script>
 
     <style>
-        @media print { .footer { display: none !important; } }
+                @media print {
+            @page { size: A4 portrait; margin: 0; }
+            body, html { margin: 0; padding: 0; width: 210mm; height: 297mm; background: #fff; }
+            .container { box-shadow: none; padding: 0; margin: 0; width: 100%; height: 100%; border: none; }
+            .nav, .header, .form-section, .print-btn, h2, .footer { display: none !important; }
+            
+            .section { margin: 0; padding: 0; height: 100%; }
+            .print-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: 210mm;
+                height: 297mm;
+                padding: 10mm;
+                box-sizing: border-box;
+                justify-content: space-between;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            .card-preview {
+                height: 132mm;
+                width: 100%;
+                margin: 0;
+                border: 2px dashed #ccc;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                background-color: #f5eef8 !important;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                border-radius: 0;
+                box-sizing: border-box;
+                page-break-inside: avoid;
+            }
+            .print-only { display: flex !important; }
+            .card-preview h3 { font-size: 2.2em; margin-bottom: 5px; }
+            .card-preview p { margin: 5px 0; }
+        }
+        .print-only { display: none; }
     </style>
     <div class="footer" style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; color: #7f8c8d;">
         <p>🌐 <a href="https://rifaterdemsahin.github.io/birthdate/" target="_blank" style="color: #3498db; text-decoration: none;">Live Site</a> | 🐙 <a href="https://github.com/rifaterdemsahin/birthdate" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repo</a></p>
