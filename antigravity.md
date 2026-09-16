@@ -20,3 +20,5 @@
 - Dedicated parents checklist with emojis.
 - Dynamic weather estimations for Cambridge.
 - Fully deployed on GitHub Pages.
+
+- Split into dedicated Arya and Mira & Ema pages for different dates.

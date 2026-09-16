@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya's Birthday Party</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #2c3e50; }
+        
+        .nav { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .nav a { text-decoration: none; padding: 10px 15px; background: #2c3e50; color: white; border-radius: 5px; }
+        .nav a:hover { background: #34495e; }
+
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        .section { margin-bottom: 30px; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+
+        .print-btn { display: block; width: 100%; padding: 15px; background: #3498db; color: #fff; text-align: center; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; margin-top: 20px; }
+        .print-btn:hover { background: #2980b9; }
+        
+        .card-preview { 
+            border: 2px solid #3498db; 
+            padding: 30px; 
+            text-align: center; 
+            margin-top: 20px; 
+            border-radius: 15px;
+            background-color: #ebf5fb; 
+            color: #2c3e50;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card-preview h3 { color: #e74c3c; font-size: 2em; margin-bottom: 10px; }
+        .card-preview strong { color: #2980b9; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; border: none; }
+            .nav, .header, .form-section, .print-btn, h2 { display: none !important; }
+            .card-preview {
+                width: 100%; height: 100vh; border: none; box-shadow: none; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 24px; background-color: #ebf5fb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+            .card-preview h3 { font-size: 3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">🏠 Home</a>
+            <a href="arya.html">🎈 Arya</a>
+            <a href="mira-ema.html">👯‍♀️ Mira & Ema</a>
+            <a href="venues.html">📍 Venues</a>
+            <a href="weather.html">🌦️ Weather</a>
+            <a href="costs.html">💷 Costs</a>
+            <a href="menu.html">🍔 Menu</a>
+            <a href="sanity-check.html">✅ Sanity</a>
+            <a href="parents-checklist.html">👨‍👩‍👧‍👦 Checklist</a>
+        </div>
+
+        <div class="header">
+            <h1>🎉 Arya's Birthday Party 🎉</h1>
+            <p>Coordinated by Ece Sahin & Rifat Erdem Sahin</p>
+        </div>
+
+        <div class="section form-section">
+            <h2>🛠️ Customize Printable Invitation Card</h2>
+            
+            <div class="form-group">
+                <label for="guestName">Guest Name:</label>
+                <select id="guestName" onchange="updateCard()">
+                    <option value="Friend">Friend</option>
+                    <option value="Family Member">Family Member</option>
+                    <option value="Classmate">Classmate</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="partyTheme">Party Theme:</label>
+                <select id="partyTheme" onchange="updateCard()">
+                    <option value="🧊 Ice Skating / Winter">🧊 Ice Skating / Winter</option>
+                    <option value="🎳 Bowling Stars">🎳 Bowling Stars</option>
+                    <option value="🍕 Pizza Making">🍕 Pizza Making</option>
+                    <option value="🦖 Dinosaur Adventure">🦖 Dinosaur Adventure</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="partyDate">Date & Time:</label>
+                <input type="text" id="partyDate" value="Saturday, October 24th at 2:00 PM" onkeyup="updateCard()">
+            </div>
+            
+            <div class="form-group">
+                <label for="partyLocation">Location Name:</label>
+                <input type="text" id="partyLocation" value="Cambridge Ice Arena" onkeyup="updateCard()">
+            </div>
+            
+            <div class="form-group">
+                <label for="partyAddress">Address (Postcode):</label>
+                <input type="text" id="partyAddress" value="Cambridge, UK" onkeyup="updateCard()">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🖨️ Printable Card Preview</h2>
+            <div class="card-preview" id="printableCard">
+                <h3>You're Invited!</h3>
+                <p>Dear <strong id="outGuest">Friend</strong>,</p>
+                <p>Join us to celebrate the birthday of <strong>Arya Sahin</strong>!</p>
+                <p><strong>Theme:</strong> <span id="outTheme">🧊 Ice Skating / Winter</span></p>
+                <p><strong>When:</strong> <span id="outDate">Saturday, October 24th at 2:00 PM</span></p>
+                <p><strong>Where:</strong> <span id="outLocation">Cambridge Ice Arena</span></p>
+                <p><strong>Address:</strong> <span id="outAddress">Cambridge, UK</span></p>
+                <p><strong>RSVP to:</strong> Ece & Rifat Erdem Sahin</p>
+            </div>
+            <button class="print-btn" onclick="window.print()">Print Arya's PDF Card</button>
+        </div>
+    </div>
+
+    <script>
+        function updateCard() {
+            document.getElementById('outGuest').innerText = document.getElementById('guestName').value;
+            document.getElementById('outTheme').innerText = document.getElementById('partyTheme').value;
+            document.getElementById('outDate').innerText = document.getElementById('partyDate').value;
+            document.getElementById('outLocation').innerText = document.getElementById('partyLocation').value;
+            document.getElementById('outAddress').innerText = document.getElementById('partyAddress').value;
+        }
+    </script>
+</body>
+</html>
